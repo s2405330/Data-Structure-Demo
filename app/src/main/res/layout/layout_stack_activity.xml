@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".stackandqueue.StackActivity">
+
+    <Spinner
+        android:id="@+id/spinner_stack_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+
+    <Button
+        android:id="@+id/btn_push_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="增加一个元素"/>
+
+    <Button
+        android:id="@+id/btn_pop_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除一个元素"/>
+
+    <EditText
+        android:id="@+id/edittext_input_num_stack_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入增加或者删除元素的位置"
+        android:inputType="number"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/textview_output_stack_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="aaaa"/>
+
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/textview_output_stack_length_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="1"/>
+
+    </ScrollView>
+
+
+</LinearLayout>

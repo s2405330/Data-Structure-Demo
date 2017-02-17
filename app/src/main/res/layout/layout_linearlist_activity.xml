@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_add_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="增加一个元素"/>
+
+    <Button
+        android:id="@+id/btn_delete_element"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除一个元素"/>
+
+    <EditText
+        android:id="@+id/edittext_input_num_linear_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入增加或者删除元素的位置"
+        android:inputType="number"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:text="aaaa"
+            android:id="@+id/textview_output_linearlist_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </ScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:text="1"
+            android:id="@+id/textview_output_linearlist_length_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </ScrollView>
+
+
+</LinearLayout>

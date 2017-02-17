@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.zhouchaoran.datastructure">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".sorting.SortingActivity">
+        </activity>
+        <activity android:name=".linearstructure.LinearListActivity">
+        </activity>
+        <activity
+            android:label="线性表"
+            android:name=".linearstructure.TransLinearActivity"
+            android:icon="@color/colorPrimary">
+        </activity>
+        <activity android:name=".stackandqueue.StackActivity">
+        </activity>
+        <activity android:name=".tree.TreeActivity"></activity>
+        <activity android:name=".search.SearchActivity"></activity>
+    </application>
+
+</manifest>
