@@ -6,21 +6,23 @@
 
     <Button
         android:id="@+id/btn_init_data"
-        android:text="初始化"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="初始化"/>
 
     <TextView
+        android:minHeight="30dp"
         android:id="@+id/textview_before_sort"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:text="adsa"/>
 
     <TextView
+        android:minHeight="30dp"
         android:id="@+id/textview_after_sort"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:text="dsad"/>
 
@@ -41,5 +43,20 @@
             android:text="排序"/>
 
     </LinearLayout>
+
+    <ViewAnimator
+        android:id="@+id/viewanimator_log_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_weight="1"
+        android:visibility="gone">
+
+        <fragment
+            android:id="@+id/log_fragment"
+            android:name="com.zhouchaoran.datastructure.logmodule.common.logger.LogFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </ViewAnimator>
 
 </LinearLayout>

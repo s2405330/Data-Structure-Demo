@@ -16,18 +16,26 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.zhouchaoran.datastructure.linearstructure.TransLinearActivity;
+import com.zhouchaoran.datastructure.logmodule.common.logger.Log;
+import com.zhouchaoran.datastructure.logmodule.common.logger.LogFragment;
+import com.zhouchaoran.datastructure.logmodule.common.logger.LogWrapper;
+import com.zhouchaoran.datastructure.logmodule.common.logger.MessageOnlyLogFilter;
+import com.zhouchaoran.datastructure.map.MapActivity;
 import com.zhouchaoran.datastructure.search.SearchActivity;
 import com.zhouchaoran.datastructure.sorting.SortingActivity;
 import com.zhouchaoran.datastructure.stackandqueue.StackActivity;
 import com.zhouchaoran.datastructure.tree.TreeActivity;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int setLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,6 +56,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initEvent() {
+
     }
 
     @Override
@@ -104,7 +122,8 @@ public class MainActivity extends AppCompatActivity
             //树
             startActivity(new Intent(MainActivity.this, TreeActivity.class));
         } else if (id == R.id.nav_send) {
-
+            //图
+            startActivity(new Intent(MainActivity.this, MapActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -1,5 +1,9 @@
 package com.zhouchaoran.datastructure.sorting.sortmethod;
 
+import com.zhouchaoran.datastructure.logmodule.common.logger.Log;
+
+import java.util.Arrays;
+
 /**
  * Created by zhouchaoran on 2017/2/4.
  *
@@ -27,11 +31,12 @@ public class SelectorSort extends BaseSort {
             return;
         }
         for (int i = 0; i < arrays.length; i++) {
-            for (int j = 0; j < i; j++) {
+            for (int j = 1; j < i; j++) {
                 if (arrays[j] > arrays[i]) {
                     swap(arrays, i, j);
                 }
             }
+            Log.d("selectsort", Arrays.toString(arrays));
         }
     }
 }

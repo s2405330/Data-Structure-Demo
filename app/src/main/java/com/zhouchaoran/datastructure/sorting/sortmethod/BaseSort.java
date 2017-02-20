@@ -47,6 +47,10 @@ import android.util.Log;
 
 public abstract class BaseSort {
 
+    public BaseSort() {
+        com.zhouchaoran.datastructure.logmodule.common.logger.Log.d("sort", "创建了"+ this.getClass().getSimpleName()+ "对象");
+    }
+
     public abstract void sort(int[] arrays);
 
     protected void swap(int[] arrays, int leftIndex, int rightIndex) {

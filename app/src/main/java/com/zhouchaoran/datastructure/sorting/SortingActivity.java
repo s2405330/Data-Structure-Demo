@@ -2,6 +2,8 @@ package com.zhouchaoran.datastructure.sorting;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,9 +12,14 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 
 import com.zhouchaoran.datastructure.BaseActivity;
 import com.zhouchaoran.datastructure.R;
+import com.zhouchaoran.datastructure.logmodule.common.logger.Log;
+import com.zhouchaoran.datastructure.logmodule.common.logger.LogFragment;
+import com.zhouchaoran.datastructure.logmodule.common.logger.LogWrapper;
+import com.zhouchaoran.datastructure.logmodule.common.logger.MessageOnlyLogFilter;
 import com.zhouchaoran.datastructure.sorting.sortmethod.BaseSort;
 import com.zhouchaoran.datastructure.sorting.sortmethod.BubbleSort;
 import com.zhouchaoran.datastructure.sorting.sortmethod.CountSort;
@@ -40,7 +47,7 @@ public class SortingActivity extends BaseActivity implements View.OnClickListene
     private BaseSort mSort;
     private int[] mArrays;
     private List<String> mSortMethods;
-
+    private boolean isShowLog = false;
 
 
 //    @Override
@@ -69,7 +76,7 @@ public class SortingActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initData() {
-        mArrays = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48};
+        mArrays = new int[]{3, 44, 38, 5, 47, 15, 36, 26, 27};
         mTextviewBeforeSort.setText(Arrays.toString(mArrays));
         mTextviewAfterSort.setVisibility(View.GONE);
         initMethodName();
@@ -97,7 +104,7 @@ public class SortingActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_sort:
-                if (mSort == null){
+                if (mSort == null) {
                     Toast.makeText(this, "你还没有选择排序方法", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -109,6 +116,7 @@ public class SortingActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.btn_init_data:
                 initData();
+                Log.i(TAG, "init");
                 break;
             case R.id.btn_selector_method:
                 final PopupWindow popupWindow = new PopupWindow();
@@ -138,8 +146,39 @@ public class SortingActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_menu_sort, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem logItem = menu.findItem(R.id.activity_menu_sort_shoulog);
+        logItem.setTitle(isShowLog ? "隐藏日志" : "显示日志");
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.activity_menu_sort_shoulog:
+                isShowLog = !isShowLog;
+                ViewAnimator output = (ViewAnimator) findViewById(R.id.viewanimator_log_fragment);
+                if (isShowLog) {
+                    output.setVisibility(View.VISIBLE);
+                } else {
+                    output.setVisibility(View.GONE);
+                }
+                output.setDisplayedChild(0);
+                supportInvalidateOptionsMenu();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initSortMethod(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 mSort = new SelectorSort();
                 break;
@@ -164,5 +203,24 @@ public class SortingActivity extends BaseActivity implements View.OnClickListene
             default:
                 break;
         }
+    }
+
+    @Override
+    public void initializeLogging() {
+        // Wraps Android's native log framework.
+        LogWrapper logWrapper = new LogWrapper();
+        // Using Log, front-end to the logging chain, emulates android.util.log method signatures.
+        Log.setLogNode(logWrapper);
+
+        // Filter strips out everything except the message text.
+        MessageOnlyLogFilter msgFilter = new MessageOnlyLogFilter();
+        logWrapper.setNext(msgFilter);
+
+        // On screen logging via a fragment with a TextView.
+        LogFragment logFragment = (LogFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.log_fragment);
+        msgFilter.setNext(logFragment.getLogView());
+
+        Log.i(TAG, "Ready");
     }
 }

@@ -1,5 +1,8 @@
 package com.zhouchaoran.datastructure.sorting.sortmethod;
 
+import com.zhouchaoran.datastructure.logmodule.common.logger.Log;
+
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -59,8 +62,8 @@ public class QuickSort extends BaseSort {
     private int randomPartition(int arr[], int left, int right) {
         int i = left, j = right;
         Random random = new Random();
-        int pivot = arr[random.nextInt(arr.length - 1)];//最优
-//        int pivot = arr[(left + right) >>> 1];//最优
+//        int pivot = arr[random.nextInt(arr.length - 1)];//额  这样写有问题。。
+        int pivot = arr[(left + right) >>> 1];//最优
 
         while (i <= j) {
             while (arr[i] < pivot)
@@ -73,6 +76,8 @@ public class QuickSort extends BaseSort {
                 j--;
             }
         }
+        Log.d("sort", "pivot = " + pivot + "  data:" + Arrays.toString(arr));
+
 
         return i;
     }
@@ -92,6 +97,8 @@ public class QuickSort extends BaseSort {
                 j--;
             }
         }
+
+        Log.d("sort", Arrays.toString(arr));
 
         return i;
     }
